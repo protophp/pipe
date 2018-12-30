@@ -3,8 +3,8 @@
 namespace Proto\Pipe\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Proto\Pipe\ReadablePipe;
-use Proto\Pipe\WritablePipe;
+use Proto\Pipe\Owner;
+use Proto\Pipe\Connector;
 use React\EventLoop\Factory;
 
 class PipeTest extends TestCase
@@ -20,8 +20,8 @@ class PipeTest extends TestCase
         if(file_exists($pipe))
             unlink($pipe);
 
-        $owner = new ReadablePipe($pipe, $loop);
-        $connector = new WritablePipe($pipe, $loop);
+        $owner = new Owner($pipe, $loop);
+        $connector = new Connector($pipe, $loop);
 
         $DATA = random_bytes(1024 * 1024 * 1);
         $checksum = sha1($DATA);

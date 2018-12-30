@@ -5,7 +5,7 @@ namespace Proto\Pipe;
 use Proto\Stream\ReadableStream;
 use React\EventLoop\LoopInterface;
 
-class ReadablePipe extends ReadableStream implements ReadablePipeInterface
+class Owner extends ReadableStream implements OwnerInterface
 {
     private $pipe;
 

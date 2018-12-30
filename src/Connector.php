@@ -5,7 +5,7 @@ namespace Proto\Pipe;
 use Proto\Stream\WritableStream;
 use React\EventLoop\LoopInterface;
 
-class WritablePipe extends WritableStream implements WritablePipeInterface
+class Connector extends WritableStream implements ConnectorInterface
 {
     private $pipe;
 

@@ -5,7 +5,7 @@ namespace Proto\Pipe;
 use Proto\Stream\ReadableStreamInterface;
 use React\EventLoop\LoopInterface;
 
-interface ReadablePipeInterface extends ReadableStreamInterface
+interface OwnerInterface extends ReadableStreamInterface
 {
     /**
      * ReadablePipeInterface constructor.
