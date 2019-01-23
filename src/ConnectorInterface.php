@@ -2,10 +2,9 @@
 
 namespace Proto\Pipe;
 
-use Proto\Stream\WritableStreamInterface;
 use React\EventLoop\LoopInterface;
 
-interface ConnectorInterface extends WritableStreamInterface
+interface ConnectorInterface
 {
     /**
      * WritablePipeInterface constructor.
@@ -14,4 +13,10 @@ interface ConnectorInterface extends WritableStreamInterface
      * @throws PipeException
      */
     public function __construct(string $pipe, LoopInterface $loop);
+
+    /**
+     * Write to pipe
+     * @param mixed $data
+     */
+    public function write($data);
 }

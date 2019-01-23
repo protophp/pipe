@@ -2,12 +2,18 @@
 
 namespace Proto\Pipe;
 
-use Proto\Stream\WritableStream;
+use Proto\Pack\Pack;
 use React\EventLoop\LoopInterface;
+use React\Stream\WritableResourceStream;
 
-class Connector extends WritableStream implements ConnectorInterface
+class Connector implements ConnectorInterface
 {
     private $pipe;
+
+    /**
+     * @var WritableResourceStream
+     */
+    private $stream;
 
     public function __construct(string $pipe, LoopInterface $loop)
     {
@@ -20,7 +26,12 @@ class Connector extends WritableStream implements ConnectorInterface
         if (!$resource)
             throw new PipeException(null, PipeException::ERR_UNABLE_TO_OPEN_PIPE);
 
-        parent::__construct($resource, $loop);
+        $this->stream = new WritableResourceStream($resource, $loop);
+    }
+
+    public function write($data)
+    {
+        $this->stream->write((new Pack())->setData($data)->toString());
     }
 
 }

@@ -1,6 +1,6 @@
 {
   "name": "protophp/pipe",
-  "description": "A custom pipe communication based on ProtoPHP stream",
+  "description": "A pipe communication based on ProtoPHP pack",
   "type": "library",
   "license": "MIT",
   "authors": [
@@ -12,7 +12,8 @@
   "require": {
     "php": "^7.0",
     "ext-posix": "*",
-    "protophp/stream": "^0.2",
+    "react/stream": "^1.1.0",
+    "protophp/pack": "^0.2",
     "evenement/evenement": "^3.0"
   },
   "require-dev": {
