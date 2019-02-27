@@ -28,14 +28,14 @@ class Owner extends EventEmitter implements OwnerInterface
         $this->pipe = $pipe;
 
         if (file_exists($this->pipe))
-            throw new PipeException(null, PipeException::ERR_ANOTHER_READER_EXITS);
+            throw new PipeException('', PipeException::ERR_ANOTHER_READER_EXITS);
 
         if (!posix_mkfifo($this->pipe, $mode))
-            throw new PipeException(null, PipeException::ERR_UNABLE_TO_CREATE_PIPE);
+            throw new PipeException('', PipeException::ERR_UNABLE_TO_CREATE_PIPE);
 
         $resource = fopen($this->pipe, 'r+');
         if (!$resource)
-            throw new PipeException(null, PipeException::ERR_UNABLE_TO_OPEN_PIPE);
+            throw new PipeException('', PipeException::ERR_UNABLE_TO_OPEN_PIPE);
 
         $this->stream = new ReadableResourceStream($resource, $loop);
         Util::forwardEvents($this->stream, $this, ['error', 'close']);
@@ -57,6 +57,6 @@ class Owner extends EventEmitter implements OwnerInterface
         // Remove pipe when reader closed the stream.
         if (file_exists($this->pipe))
             if (!unlink($this->pipe))
-                throw new PipeException(null, PipeException::ERR_UNABLE_TO_REMOVE_PIPE);
+                throw new PipeException('', PipeException::ERR_UNABLE_TO_REMOVE_PIPE);
     }
 }

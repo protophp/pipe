@@ -20,11 +20,11 @@ class Connector implements ConnectorInterface
         $this->pipe = $pipe;
 
         if (!file_exists($this->pipe))
-            throw new PipeException(null, PipeException::ERR_PIPE_NOT_EXISTS);
+            throw new PipeException('', PipeException::ERR_PIPE_NOT_EXISTS);
 
         $resource = fopen($this->pipe, 'a');
         if (!$resource)
-            throw new PipeException(null, PipeException::ERR_UNABLE_TO_OPEN_PIPE);
+            throw new PipeException('', PipeException::ERR_UNABLE_TO_OPEN_PIPE);
 
         $this->stream = new WritableResourceStream($resource, $loop);
     }
