@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.2
+
+* Fix: PipeException's bug is fixed.
+
 ## v0.2.1
 
 * Updated the pack to v0.3
